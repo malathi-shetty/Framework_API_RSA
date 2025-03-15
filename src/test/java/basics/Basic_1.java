@@ -59,7 +59,7 @@ public class Basic_1 {
 				.when().put("maps/api/place/update/json").then().assertThat().log().all().statusCode(200)
 				.body("msg", equalTo("Address successfully updated"));
 
-		// Get Place  (Use GET here instead of PUT)
+		// Get Place (Use GET here instead of PUT)
 		String getPlaceResponse = given().log().all().queryParam("key", "qaclick123").queryParam("place_id", placeId)
 				.when().get("maps/api/place/get/json") // <-- Correct endpoint for retrieving the place details
 				.then().assertThat().log().all().statusCode(200).extract().response().asString();
@@ -74,13 +74,14 @@ public class Basic_1 {
 
 		// If the response is valid JSON, then parse it
 		if (!getPlaceResponse.isEmpty()) {
-			
+
 			JsonPath js1 = ReUsableMethods.rawToJson(getPlaceResponse);
-		//	JsonPath js1 = new JsonPath(getPlaceResponse);
+			// JsonPath js1 = new JsonPath(getPlaceResponse);
 			String actualAddress = js1.getString("address");
 			System.out.println("actualAddress (from Get Place): " + actualAddress);
 			Assert.assertEquals(actualAddress, newAddress);// Assert the new address is returned
-		//	Assert.assertEquals(actualAddress, "Pacific ocean"); //AssertionError: expected [Pacific ocean] but found [Summer walk, Africa]
+			// Assert.assertEquals(actualAddress, "Pacific ocean"); //AssertionError:
+			// expected [Pacific ocean] but found [Summer walk, Africa]
 		} else {
 			System.out.println("Response body is empty. The place_id might be invalid or the place may not exist.");
 		}
