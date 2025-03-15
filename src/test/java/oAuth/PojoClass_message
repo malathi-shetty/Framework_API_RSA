@@ -1,0 +1,49 @@
+//POJO Classes
+public class Message {
+
+    private String message; // Variable name should be private
+    private String greet;
+
+public String getMessage() // Getter method to get the message value - method name should be public
+    {
+    return message;
+    }
+    
+    public String getGreet() 
+    {
+    return greet;
+    }
+
+public void setMessage (String message) // Setter method to set the message value
+    { 
+        this.message = message;
+    }
+    
+     public void setGreet(String greet) 
+    {
+    this.greet = greet;//current class variables
+    }
+}
+
+//Create java object
+Message m = new Message(); 
+m.setMessage ("Hello");
+
+Greet g = new Greet(); 
+g.setGreet ("Hi");
+
+//Rest Assured:
+ Message message = new Message();
+    message.setMessage ("My messagee");
+ given ().
+    .body (m)
+    .when ()
+    .post ("/message");
+
+//Run time request creation
+
+{
+"message": "Hello" // JSON Payload - Request Body - setting the message value & getting the message value in the request body
+
+"greet": "Hi"
+}

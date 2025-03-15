@@ -1,0 +1,6 @@
+{
+  "name": "{{name}}",
+  "isbn": "{{isbn}}",
+  "aisle": "{{aisle}}",
+  "author": "{{author}}"
+}

@@ -1,0 +1,70 @@
+Postman - OAuth API Contract Collection Name - Select Body - Form-data - Add (client_id, client_secret, grant_type, scope) from below details and send the request.
+
+Authorization Server EndPoint:
+
+https://rahulshettyacademy.com/oauthapi/oauth2/resourceOwner/token
+
+
+HTTP Method : POST
+
+
+Form parameters :
+
+
+client_id:
+
+692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com
+
+client_secret:  erZOWM9g3UtwNRj340YYaK_W
+
+grant_type:   client_credentials
+
+scope:  trust
+
+Output :
+
+{
+    "access_token": "B83gy++nSNrBjbaJF4tU/A==",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "refresh_token": "1vv/GJVe2ZX6Zz7C/Y10Gg==",
+    "scope": "create"
+}
+
+******************************************************************
+
+
+GetCourseDetails EndPoint (Secured by OAuth) :
+
+https://rahulshettyacademy.com/oauthapi/getCourseDetails
+
+
+HTTP Method : GET
+
+Query Parameter : access_token
+
+
+
+Output:
+
+Case1: if no access token is passed in query parameter
+
+{
+    "error": true,
+    "status": "failed",
+    "msg": "Invalid or Expired token"
+}
+
+
+Case2: if access token is passed in query parameter
+
+PostMan - Params - Key - access_token, Value - B83gy++nSNrBjbaJF4tU/A==
+
+{
+    "instructor": "Rahul",
+    "url": "rahulshettyacademy.com",
+    "services": "projectSupport",
+    "expertise": "Automation"
+}
+
+in case if u get "error": "invalid_token"  then you need to get new access token by calling (Authorization Server EndPoint) OAuth API Contract download request again

@@ -1,0 +1,50 @@
+POJO Classes (Plain Old Java Objects)
+
+Definition: POJO classes are simple Java classes that contain:
+    Private fields (to store data).
+    Public getter and setter methods (to access and modify data).
+    Public no-argument constructor (for instantiating objects).
+    
+Usage:
+    POJOs are primarily used to represent request and response data in various contexts like APIs.
+    They are used for serialization and deserialization when dealing with requests and responses.
+    POJOs are also used to create user-friendly methods, making the code more readable and easier to debug and maintain.
+
+Serialization and Deserialization
+    Serialization: The process of converting a Java object into a request body (payload) that can be sent over the network in JSON or XML format.
+        In Rest Assured, this typically refers to converting Java objects to JSON or XML to send in HTTP requests.
+
+    Deserialization: The process of converting a response body (in JSON or XML) back into a Java object.
+        In Rest Assured, this refers to converting the received response body (in JSON or XML format) back into Java objects to extract values more easily.
+
+Serialization & Deserialization in Rest Assured
+    Purpose:
+        Simplifies the process of converting Java objects to request payloads and vice versa.
+        Helps in extracting data from responses by mapping them into Java objects.
+        Makes code more readable, maintainable, and easier to debug.
+        Serialization creates the request body (payload) from Java objects, while deserialization converts the response     body into Java objects for further manipulation.
+
+Why Serialization and Deserialization?
+
+Serialization: Needed to convert a Java object into a request body (payload) before sending a request to an API.
+Deserialization: Needed to convert the response body back into a Java object to easily extract and manipulate data.
+
+Advantages of Serialization and Deserialization
+    Easy parsing and extraction: JSON or XML response values are mapped into Java objects, simplifying the extraction process.
+    User-friendly methods: The code is more readable by using Java objects and methods to interact with requests and responses.
+    Maintainability and debugging: The code becomes easier to maintain and debug due to a structured and organized approach.
+    Payload creation: Serialization simplifies the creation of request and response payloads for APIs.
+
+Design Approach
+    Java objects are created based on the POJO classes which represent the request and response payloads.
+    Once the Java object is constructed, it is serialized into the request body for sending to the API.
+    After receiving the response body, it is deserialized back into a Java object to extract values easily.
+
+Additional Libraries for Serialization/Deserialization
+For JSON: You need libraries such as:
+    Jackson
+    Jackson2
+    Gson
+    Johnzon
+For XML: 
+    You need the JAXB library for XML serialization and deserialization.

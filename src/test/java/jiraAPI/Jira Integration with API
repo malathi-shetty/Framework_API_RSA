@@ -1,0 +1,41 @@
+make jira login
+see the url in jira
+
+https://www.base64encode.org/ - convert Jira API Token to base 64 encode
+
+https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/#authentication
+
+https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-post : 
+- Content-Type
+
+https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/
+- Authorization
+Basic base 64 encode Jira API Token
+
+https://developer.atlassian.com/server/jira/platform/jira-rest-api-example-create-issue-7897248/
+
+https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-post
+- status code: 201 
+
+https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-attachments/#api-rest-api-3-issue-issueidorkey-attachments-post
+
+add attachmnet post request
+
+curl --location --request POST 'https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments'
+ -u 'email@example.com:<api_token>'
+ -H 'X-Atlassian-Token: no-check'
+ --form 'file=@"myfile.txt"'
+
+
+https://your-domain.atlassian.net/rest/api/3/issue/TEST-123/attachments - add in url - post
+
+'X-Atlassian-Token': 'no-check' - add in header
+
+TEST-123: get replaced by create issue id
+
+https://shettymalathi113.atlassian.net/rest/api/3/issue/10006/attachments
+
+Click Body select form-header - put key value  
+file - dropdown select file for screenshot - attach image
+
+//file=@"myfile.txt' - attach file
