@@ -1,0 +1,39 @@
+
+url: https://rahulshettyacademy.com/gq/graphql
+
+Paste this:
+
+mutation ($locationName: String!, $characterName: String!, $episodeName: String!) {
+  createLocation(location: {name: $locationName, type: "Southzone", dimension: "234"}) {
+    id
+  }
+  createCharacter(character: {name: $characterName, type: "Macho", status: "dead", species: "fantasy", gender: "Male", image: "png", originId: 19198, locationId: 19198}) {
+    id
+  }
+  createEpisode(episode: {name: $episodeName, air_date: "1990 June", episode: "Netflix"}) {
+    id
+  }
+  deleteLocations(locationIds: [19200, 19201]) {
+    locationsDeleted
+  }
+}
+
+
+Query Variables:
+{
+  "locationName": "NewZealand",
+  "characterName": "Baskin Robin",
+  "episodeName": "Manifest"
+}
+
+
+Note: 
+- Open Chrome inspect & go to network tab
+- Click on Execute button
+- Select Name from left: graphql --> Payload - On Request Payload click on view source & copy the Payload 
+
+Paste the below in Json Editor on left: https://jsoneditoronline.org
+
+
+{"query":"mutation ($locationName: String!, $characterName: String!, $episodeName: String!) {\n  createLocation(location: {name: $locationName, type: \"Southzone\", dimension: \"234\"}) {\n    id\n  }\n  createCharacter(character: {name: $characterName, type: \"Macho\", status: \"dead\", species: \"fantasy\", gender: \"Male\", image: \"png\", originId: 19198, locationId: 19198}) {\n    id\n  }\n  createEpisode(episode: {name: $episodeName, air_date: \"1990 June\", episode: \"Netflix\"}) {\n    id\n  }\n  deleteLocations(locationIds: [19200, 19201]) {\n    locationsDeleted\n  }\n}\n","variables":{"locationName":"NewZealand","characterName":"Baskin Robin","episodeName":"Manifest"}}
+

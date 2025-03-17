@@ -1,0 +1,59 @@
+
+url: https://rahulshettyacademy.com/gq/graphql
+
+Paste this:
+
+query ($characterId: Int!, $episodeId: Int!, $locationId: Int!) {
+  character(characterId: $characterId) {
+    name
+    gender
+    status
+    id
+    type
+  }
+  location(locationId: $locationId) {
+    name
+    dimension
+  }
+  episode(episodeId: $episodeId) {
+    name
+    air_date
+    episode
+  }
+  characters(filters: {name: "Rahul"}) {
+    info {
+      count
+    }
+    result {
+      name
+      type
+    }
+  }
+  episodes(filters: {episode: "hulu"}) {
+    result {
+      id
+      name
+      air_date
+      episode
+    }
+  }
+}
+
+
+Query Variables:
+{
+  "characterId": 13212,
+  "episodeId": 13504,
+  "locationId": 19203
+}
+
+
+Note: 
+- Open Chrome inspect & go to network tab
+- Click on Execute button
+- Select Name from left: graphql --> Payload - On Request Payload click on view source & copy the Payload 
+
+Paste the below in Json Editor on left: https://jsoneditoronline.org
+
+
+{"query":"query ($characterId: Int!, $episodeId: Int!, $locationId: Int!) {\n  character(characterId: $characterId) {\n    name\n    gender\n    status\n    id\n    type\n  }\n  location(locationId: $locationId) {\n    name\n    dimension\n  }\n  episode(episodeId: $episodeId) {\n    name\n    air_date\n    episode\n  }\n  characters(filters: {name: \"Rahul\"}) {\n    info {\n      count\n    }\n    result {\n      name\n      type\n    }\n  }\n  episodes(filters: {episode: \"hulu\"}) {\n    result {\n      id\n      name\n      air_date\n      episode\n    }\n  }\n}\n","variables":{"characterId":13212,"episodeId":13504,"locationId":19203}}
