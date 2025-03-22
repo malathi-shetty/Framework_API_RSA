@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dynamicJson_LibraryAPI.DynamicJson_3">
+      <class name="ExcelDriven_2_learn.ExcelDriven_Using_HashMap_Excel_Integrate">
         <methods>
           <include name="addBook"/>
         </methods>
-      </class> <!-- dynamicJson_LibraryAPI.DynamicJson_3 -->
+      </class> <!-- ExcelDriven_2_learn.ExcelDriven_Using_HashMap_Excel_Integrate -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
