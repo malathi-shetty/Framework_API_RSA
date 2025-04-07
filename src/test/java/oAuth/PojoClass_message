@@ -47,3 +47,74 @@ g.setGreet ("Hi");
 
 "greet": "Hi"
 }
+
+
+------
+
+POJO (Plain Old Java Object) Classes
+A POJO is just a basic Java object with fields (variables) and methods to get and set the values of those fields.
+
+Here, you have two classes: Message and Greet.
+
+The Message class:
+
+This class holds two pieces of information: a message and a greet.
+
+private means the fields (variables) can't be accessed directly from outside the class.
+
+The getMessage() and getGreet() methods are getter methods. These allow you to retrieve the values of message and greet from outside the class.
+
+The setMessage() and setGreet() methods are setter methods. These allow you to set or change the values of message and greet.
+
+Creating Java Objects
+In the code, you create objects of the Message and Greet classes:
+
+
+Message m = new Message(); 
+m.setMessage("Hello");
+This creates an object m of the Message class and sets the message value to "Hello" using the setMessage() method.
+
+
+Greet g = new Greet(); 
+g.setGreet("Hi");
+Similarly, this creates an object g of the Greet class and sets the greet value to "Hi" using the setGreet() method.
+
+Rest Assured
+Rest Assured is a library used to test RESTful APIs in Java. It's a way of automating HTTP requests like GET, POST, etc. In the code, you're testing the POST request to send data (like message and greet) to a web server.
+
+
+Message message = new Message();
+message.setMessage("My message");
+given().
+    .body(m)
+    .when()
+    .post("/message");
+This part creates a new Message object, sets the message to "My message", and sends that message object as the body of a POST request to the server at the /message endpoint.
+
+The given() method starts the request, and body(m) means you are sending the contents of the m object (which holds your message) in the request. Then, .post("/message") sends the request to the endpoint /message on the server.
+
+JSON Payload / Request Body
+In a web API request, data is often sent in JSON format. The data you're sending looks like this:
+
+
+{
+  "message": "Hello",
+  "greet": "Hi"
+}
+This is the data being sent in the request. It has two pieces of information: "message": "Hello" and "greet": "Hi".
+
+The server will receive this data and might do something with it (like storing it or using it in some way).
+
+Summary:
+POJO Classes define the structure of your data (in this case, Message and Greet).
+
+Getter and Setter Methods are used to access and change the values inside those objects.
+
+Rest Assured is used to automate making requests to a web server (like sending data to an API).
+
+The JSON Payload is the data you're sending through the web request, in a format that the server can understand and use.
+
+Essentially, you're creating objects to store some data (like a message and a greeting), then sending that data to a web server using an API call.
+
+
+

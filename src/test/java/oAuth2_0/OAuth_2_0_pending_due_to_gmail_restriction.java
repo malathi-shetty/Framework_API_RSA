@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 
 public class OAuth_2_0_pending_due_to_gmail_restriction {
 
@@ -93,30 +94,63 @@ public class OAuth_2_0_pending_due_to_gmail_restriction {
 
 	//	String url = driver.getCurrentUrl();
 	*/	
-		String url ="https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AQSTgQGUg0oGdIPnPH3baYNKbr7C93WiFUWVBR_N9RgihHvym8C8sT_TFL5P2_TTxUcngQ&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&session_state=0c32992f0d47e93d273922018ade42d1072b9d1f..a35c&prompt=none#";
+		String url ="https://rahulshettyacademy.com/getCourse.php?state=verifyfjdss&code=4%2F0AQSTgQEfeNzOmXL_VzwJs477l6unZd1P2nx4tEZoP1Dap4yo0PVr7E9tASNPSXZVuX_q3Q&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&session_state=0c32992f0d47e93d273922018ade42d1072b9d1f..a35c&prompt=none#";
 		
 		String partialCode = url.split("code=")[1]; // returns an array
 		String code = partialCode.split("&scope")[0];
 		System.out.println(code);
 		
 
-		String accessTokenResponse = given().urlEncodingEnabled(false)
+		Response accessTokenResponse = given().urlEncodingEnabled(false)
 				.queryParam("code", code)
 				.queryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
 				.queryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
 				.queryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
 				.queryParam("grant_type", "authorization_code").when().log().all()
-				.post("https://www.googleapis.com/oauth2/v4/token").asPrettyString();
+				.post("https://www.googleapis.com/oauth2/v4/token");
 
+		  // Print the access token response
+        String accessTokenResponseBody = accessTokenResponse.asString();
 		System.out.println("accessTokenResponse: " + accessTokenResponse);
+		
+		int statusCode = given().urlEncodingEnabled(false)
+		        .queryParam("code", code)
+		        .queryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
+		        .queryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
+		        .queryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
+		        .queryParam("grant_type", "authorization_code")
+		        .when().log().all()
+		        .post("https://www.googleapis.com/oauth2/v4/token")
+		        .statusCode();
 
-		JsonPath js = new JsonPath(accessTokenResponse);
+		String statusLine = given().urlEncodingEnabled(false)
+		        .queryParam("code", code)
+		        .queryParam("client_id", "692183103107-p0m7ent2hk7suguv4vq22hjcfhcr43pj.apps.googleusercontent.com")
+		        .queryParam("client_secret", "erZOWM9g3UtwNRj340YYaK_W")
+		        .queryParam("redirect_uri", "https://rahulshettyacademy.com/getCourse.php")
+		        .queryParam("grant_type", "authorization_code")
+		        .when().log().all()
+		        .post("https://www.googleapis.com/oauth2/v4/token")
+		        .statusLine();
+
+		System.out.println("Access Token Response Status Code: " + statusCode);
+		System.out.println("Access Token Response Status Line: " + statusLine);
+		
+		JsonPath js = new JsonPath(accessTokenResponseBody);
 		String accessToken = js.getString("access_token");
 
-		String response = given().queryParam("access_token", "accessToken").when().log().all()
-				.get("https://rahulshettyacademy.com/getCourse.php").asPrettyString();
+		Response response = given().queryParam("access_token", "accessToken").when().log().all()
+				.get("https://rahulshettyacademy.com/getCourse.php");
 
-		System.out.println("Response: " + response);
+		// Print the response from the second request
+        String responseBody = response.asString();
+		System.out.println("Response: " + responseBody);
+		
+		int responseStatusCode = response.statusCode();
+		String responseStatusLine = response.statusLine();
+
+		System.out.println("Response Status Code: " + responseStatusCode);
+		System.out.println("Response Status Line: " + responseStatusLine);
 	}
 
 }
